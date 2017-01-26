@@ -35,6 +35,7 @@ class WhackARuby < Gosu::Window
     end
     draw_quad(0, 0, c, 800, 0, c, 800, 600, c, 0, 600, c)
     @hit = 0
+    @font.draw(@score.to_s, 700, 20, 2)
   end
 
   def update
@@ -49,8 +50,10 @@ class WhackARuby < Gosu::Window
   def button_down(id)
     if id == Gosu::MS_LEFT
       if Gosu.distance(mouse_x, mouse_y, @x, @y) < 100 && @visible > 0
+        @score += 5
         @hit = 1
       else
+        @score -= 1
         @hit = -1
       end
     end
